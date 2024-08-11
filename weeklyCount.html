@@ -1,0 +1,47 @@
+<script>
+   // Set this to any date / time that you have a worship service
+   var end = new Date('08/11/2024 9:0 AM');
+   // Set this to the day of your service (0 Sunday, 1 Monday, 2 Tuesday, etc.)
+   var serviceDay = 0;
+
+   var now = new Date();
+   if ( end < now )
+   {
+      while ( 1 )
+      {
+         end.setDate(end.getDate() + 1);
+         if ( end.getDay() == serviceDay ) break;
+      }
+   }
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'Worship';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+    }
+
+    timer = setInterval(showRemaining, 1000);
+</script>
+
+<div id="countdown" style='font-family:Tahoma;font-size:50pt;font-weight:bold;color:white;position:fixed;top:2%;width:100%;height:20%;text-align:center;background-color:rgba(0,0,0,0.4)'></div>
