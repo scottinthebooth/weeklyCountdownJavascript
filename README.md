@@ -1,0 +1,1 @@
+This Javascript will populate a div with a countdown to the same day and time each week.  Edit the first few lines to setup the weekly event you are counting down to and that's it!  You can style the div by inline CSS or add and reference a class.
